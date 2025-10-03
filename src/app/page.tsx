@@ -1,34 +1,31 @@
-"use client";
+import Link from 'next/link'
+import { FadeIn } from '@/components/animations/FadeIn'
+import ProductGrid from '@/components/products/ProductGrid'
 
-import { Skiper40 } from '@/components/ui/skiper-ui/skiper40';
-import Toggle from "@/components/toggle";
-import { SimpleMouseFollow, Skiper61, SpringMouseFollow } from "@/components/ui/skiper-ui/skiper61";
-import { motion, useMotionValue, useSpring } from "framer-motion";
-import { cn } from "@/lib/utils";
-import {Skiper30} from '@/components/ui/skiper-ui/skiper30';
-
-const SPRING = { stiffness: 300, damping: 30 };
-
-export default function Home() {
-  // Example use of motion with useMotionValue and useSpring (optional)
-  const mouseX = useMotionValue(0);
-  const springX = useSpring(mouseX, SPRING);
-
+export default function HomePage() {
   return (
-    <main>
-      <Skiper40 />
-      <Toggle />
+    <div className="container mx-auto px-4">
+      <FadeIn>
+        <section className="py-20 text-center">
+          <h1 className="text-5xl font-bold mb-4">
+            Welcome to Our Store
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            Discover amazing products at great prices
+          </p>
+          <Link 
+            href="/products"
+            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700"
+          >
+            Shop Now
+          </Link>
+        </section>
+      </FadeIn>
 
-      {/* Uncomment to use */}
-      {/* <SimpleMouseFollow />
-      <Skiper61 /> */}
-
-      <div className='border-4 border-red-500'>
-        <SpringMouseFollow />
-
-        <Skiper30 />
-      </div>
-
-    </main>
-  );
+      <section className="py-10">
+        <h2 className="text-3xl font-bold mb-6">Featured Products</h2>
+        <ProductGrid featured={true} />
+      </section>
+    </div>
+  )
 }
